@@ -2,6 +2,7 @@ package br.senaigo.mobile.controlller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
@@ -18,11 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.senaigo.mobile.entities.Order;
 import br.senaigo.mobile.interfaces.GenericOperationsController;
+import br.senaigo.mobile.service.OrderService;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 @RestController("/orders")
 public class OrderController implements GenericOperationsController<Order> {
 
+	@Autowired
+	public OrderService orderService;
+	
 	@Override
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, 
 				 produces = {MediaType.APPLICATION_JSON_VALUE,
@@ -30,8 +36,8 @@ public class OrderController implements GenericOperationsController<Order> {
 						 	 MediaTypes.HAL_JSON_VALUE})
 	@ResponseStatus(HttpStatus.CREATED)
 	public Resource<Order> post(Order order) {
-		// TODO Auto-generated method stub
 		
+		orderService.post(order);
 		
 		Link link = linkTo(OrderController.class).slash(order.getId()).withSelfRel();
 		Resource<Order> result = new Resource<Order>(order,link);
