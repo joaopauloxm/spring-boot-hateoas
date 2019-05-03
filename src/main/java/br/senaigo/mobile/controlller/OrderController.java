@@ -1,6 +1,6 @@
 package br.senaigo.mobile.controlller;
 
-import java.util.List;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
@@ -21,11 +21,9 @@ import br.senaigo.mobile.entities.Order;
 import br.senaigo.mobile.interfaces.GenericOperationsController;
 import br.senaigo.mobile.service.OrderService;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
-
 @RestController("/orders")
 public class OrderController implements GenericOperationsController<Order> {
-
+	
 	@Autowired
 	public OrderService orderService;
 	
