@@ -50,11 +50,8 @@ public class OrderController implements GenericOperationsController<Order> {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Resource<Order> post(@RequestBody Order order) {
 		try {
-			logger.debug("Método POST executado.");
-			logger.debug(String.format("\tValor recebido: %s",order.toString()));
-			logger.debug("\tMétodo POST invocado");
 			orderService.post(order);
-			logger.info(String.format("Registro inserido: %s",order.toString()));
+			logger.info("Registro inserido");
 			
 			Link link = linkTo(OrderController.class).slash(order.getId()).withSelfRel();
 			Resource<Order> result = new Resource<Order>(order,link);
@@ -125,7 +122,7 @@ public class OrderController implements GenericOperationsController<Order> {
 	 						MediaType.APPLICATION_XML_VALUE,
 	 						MediaTypes.HAL_JSON_VALUE})
 	@ResponseStatus(HttpStatus.OK)
-	public Resource<Order> get(@PathVariable("id") Integer id) {
+	public Resource<Order> get(@PathVariable("id") Long id) {
 		try {
 			Order order = orderService.get(Order.builder().idOrder(id).build());
 			logger.info(String.format("Registro recuperado: %s",order.toString()));

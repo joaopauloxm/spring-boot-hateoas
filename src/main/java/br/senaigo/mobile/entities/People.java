@@ -28,7 +28,7 @@ public class People extends ResourceSupport {
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	@Column(name="id")
-	private Integer idPeople;
+	private Long idPeople;
 	private String name;
 	private String surName;
 	private String email;

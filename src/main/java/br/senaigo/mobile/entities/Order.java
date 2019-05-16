@@ -30,7 +30,7 @@ public class Order extends ResourceSupport {
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	@Column(name="id")
-	private Integer idOrder;
+	private Long idOrder;
 	private UUID uuid;
 	
 	@OneToOne

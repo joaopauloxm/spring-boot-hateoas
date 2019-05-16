@@ -33,7 +33,7 @@ public class PeopleController implements GenericOperationsController<People> {
 	}
 
 	@Override
-	public Resource<People> get(Integer id) {
+	public Resource<People> get(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
