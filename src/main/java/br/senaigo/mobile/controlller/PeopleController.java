@@ -8,13 +8,17 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.senaigo.mobile.entities.People;
 import br.senaigo.mobile.interfaces.GenericOperationsController;
 
-@RestController("/peoples")
+@RestController
+@RequestMapping("/peoples")
 public class PeopleController implements GenericOperationsController<People> {
 	
 	/**
@@ -29,10 +33,10 @@ public class PeopleController implements GenericOperationsController<People> {
 	}
 
 	@Override
-	@GetMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, 
+	@PutMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, 
 							 MediaType.APPLICATION_XML_VALUE})
 	@ResponseStatus(HttpStatus.OK)
-	public void put(People people) {
+	public void put(@RequestBody People people) {
 		logger.info("Atulizado registro de pessoa.");
 		
 	}
