@@ -50,7 +50,9 @@ public class OrderController implements GenericOperationsController<Order> {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Resource<Order> post(@RequestBody Order order) {
 		try {
-			
+			logger.debug("Método POST executado.");
+			logger.debug(String.format("\tValor recebido: %s",order.toString()));
+			logger.debug("\tMétodo POST invocado");
 			orderService.post(order);
 			logger.info(String.format("Registro inserido: %s",order.toString()));
 			
