@@ -53,7 +53,7 @@ public class OrderController implements GenericOperationsController<Order> {
 			orderService.post(order);
 			logger.info("Registro inserido");
 			
-			Link link = linkTo(OrderController.class).slash(order.getId()).withSelfRel();
+			Link link = linkTo(OrderController.class).slash(order.getIdOrder()).withSelfRel();
 			Resource<Order> result = new Resource<Order>(order,link);
 			return result;
 		} catch (Exception e) {
