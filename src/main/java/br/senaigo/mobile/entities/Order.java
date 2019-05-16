@@ -18,13 +18,17 @@ import javax.persistence.Table;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Builder
 @Table(name="[order]")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order extends ResourceSupport {
 	
 	@Id
@@ -33,7 +37,7 @@ public class Order extends ResourceSupport {
 	private Long idOrder;
 	private UUID uuid;
 	
-	@OneToOne
+	@OneToOne (cascade=CascadeType.ALL)
 	private People people = new People();
 	
 	@OneToMany(fetch = FetchType.LAZY,cascade= CascadeType.ALL)
