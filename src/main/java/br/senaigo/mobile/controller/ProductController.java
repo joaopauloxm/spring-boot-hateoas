@@ -1,8 +1,6 @@
-package br.senaigo.mobile.controlller;
+package br.senaigo.mobile.controller;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-
-import java.util.List;
 
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
@@ -13,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import br.senaigo.mobile.entities.Order;
 import br.senaigo.mobile.entities.Product;
 import br.senaigo.mobile.interfaces.GenericOperationsController;
 

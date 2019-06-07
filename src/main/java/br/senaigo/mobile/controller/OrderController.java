@@ -1,4 +1,4 @@
-package br.senaigo.mobile.controlller;
+package br.senaigo.mobile.controller;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
