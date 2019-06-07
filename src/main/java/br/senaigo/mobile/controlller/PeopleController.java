@@ -70,7 +70,7 @@ public class PeopleController implements GenericOperationsController<People> {
 //		    return result;
 			
 		} catch (Exception e) {
-			logger.error(String.format("Erro ao executar o método GET.\nMensagem: %s",e.getMessage()));
+			logger.error(String.format("Erro ao executar o metodo GET.\nMensagem: %s",e.getMessage()));
 		}
 		return null;
 	}

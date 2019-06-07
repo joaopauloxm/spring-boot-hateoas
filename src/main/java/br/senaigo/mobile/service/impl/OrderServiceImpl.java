@@ -44,6 +44,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Order get(Order order) {
+		logger.info("get");
 		try {
 			orderRepository.getOne(order.getIdOrder());
 		} catch (Exception e) {
