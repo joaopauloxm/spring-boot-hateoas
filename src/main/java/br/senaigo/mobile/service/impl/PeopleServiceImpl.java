@@ -1,48 +1,46 @@
 package br.senaigo.mobile.service.impl;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import br.senaigo.mobile.entities.People;
+import br.senaigo.mobile.repositories.PeopleRepository;
+import br.senaigo.mobile.service.PeopleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.senaigo.mobile.entities.Order;
-import br.senaigo.mobile.repositories.OrderRepository;
-import br.senaigo.mobile.service.OrderService;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
-public class OrderServiceImpl implements OrderService {
+public class PeopleServiceImpl implements PeopleService {
 
-	Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
-
+	Logger logger = LoggerFactory.getLogger(PeopleServiceImpl.class);
+	
 	@Autowired
-	public OrderRepository orderRepository;
-
+	public PeopleRepository peopleRepository;
+	
 	@Override
 	@Transactional
-	public Order post(Order order) {
+	public People post(People people) {
 		try {
 			logger.debug("\tMétodo POST executado.");
 			logger.debug("\tMétodo POST invocado");
-			logger.debug(String.format("\tValor recebido: %s", order.toString()));
-
-			orderRepository.save(order);
-
-			logger.info(String.format("\tValor persistido: %s", order.toString()));
-			return order;
+			logger.debug(String.format("\tValor recebido: %s",people.toString()));
+			
+			peopleRepository.save(people);
+			
+			logger.info(String.format("\tValor persistido: %s",people.toString()));
+			return people;
 		} catch (Exception e) {
-			logger.error(String.format("Error ao persistir registro. \nMensagem:%s", e.getMessage()));
+			logger.error(String.format("Error ao persistir registro. \nMensagem:%s",e.getMessage()));
 		}
 		return null;
 	}
 
 	@Override
-	public Order get(Order order) {
+	public People get(People people) {
 		try {
-			return orderRepository.getOne(order.getIdOrder());
+			peopleRepository.getOne(people.getIdPeople());
 		} catch (Exception e) {
 			logger.error("Error ao recuperar método GET.");
 		}
@@ -50,9 +48,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Order> get() {
+	public List<People> get() {
 		try {
-			return orderRepository.findAll();
+			return peopleRepository.findAll();
 		} catch (Exception e) {
 			logger.error("Error ao recuperar método GET.");
 		}
@@ -61,9 +59,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public void put(Order order) {
+	public void put(People people) {
 		try {
-			orderRepository.getOne(order.getIdOrder());
+			peopleRepository.getOne(people.getIdPeople());
 		} catch (Exception e) {
 			logger.error("Error ao recuperar método GET.");
 		}
@@ -71,9 +69,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public void delete(Order entity) {
+	public void delete(People entity) {
 		try {
-			orderRepository.delete(entity);
+			peopleRepository.delete(entity);
 		} catch (Exception e) {
 			logger.error(String.format("Erro ao executar o metodo PATCH.\nMensagem: %s", e.getMessage()));
 		}
@@ -81,9 +79,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public void patch(Order entity) {
+	public void patch(People entity) {
 		try {
-			orderRepository.save(entity);
+			peopleRepository.save(entity);
 			logger.info(String.format("Registro atualizado: %s", entity.toString()));
 		} catch (Exception e) {
 			logger.error(String.format("Erro ao executar o metodo PATCH.\nMensagem: %s", e.getMessage()));
@@ -92,10 +90,10 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public List<Order> post(List<Order> entities) {
+	public List<People> post(List<People> entities) {
 		try {
 			entities.forEach(entity -> {
-				orderRepository.save(entity);
+				peopleRepository.save(entity);
 				logger.info(String.format("Registro atualizado: %s", entity.toString()));
 			});
 			return entities;
@@ -107,10 +105,10 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public void put(List<Order> entities) {
+	public void put(List<People> entities) {
 		try {
 			entities.forEach(entity -> {
-				orderRepository.save(entity);
+				peopleRepository.save(entity);
 				logger.info(String.format("Registro atualizado: %s", entity.toString()));
 			});
 		} catch (Exception e) {
@@ -120,10 +118,10 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public void delete(List<Order> entities) {
+	public void delete(List<People> entities) {
 		try {
 			entities.forEach(entity -> {
-				orderRepository.delete(entity);
+				peopleRepository.delete(entity);
 			});
 		} catch (Exception e) {
 			logger.error(String.format("Erro ao executar o metodo DELETE.\nMensagem: %s",e.getMessage()));
@@ -132,10 +130,10 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public void patch(List<Order> entities) {
+	public void patch(List<People> entities) {
 		try {
 			entities.forEach(entity -> {
-				orderRepository.save(entity);
+				peopleRepository.save(entity);
 				logger.info(String.format("Registro atualizado: %s", entity.toString()));
 			});
 		} catch (Exception e) {

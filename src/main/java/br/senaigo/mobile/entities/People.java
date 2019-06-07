@@ -18,7 +18,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "people")
 @Data
 @Builder
 @NoArgsConstructor
@@ -29,8 +29,14 @@ public class People extends ResourceSupport {
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private Long idPeople;
+
+	@Column
 	private String name;
+
+	@Column
 	private String surName;
+
+	@Column
 	private String email;
 	
 	@OneToMany(fetch=FetchType.LAZY)
